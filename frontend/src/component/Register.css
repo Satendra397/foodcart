@@ -1,0 +1,56 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+.register-container{
+    height: 100vh;
+    width: 100vw;
+    background-color:blue;
+    border: 2px solid black;
+   
+    
+}
+.register-container h2{
+margin-left: 40%;
+margin-top: 6%;
+font-weight: bold;
+color: chartreuse;
+    
+}
+.register-form{
+    height: 60%;
+    width: 30%;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+    margin-left: 35%;
+    margin-top: 2%;
+    border-radius: 20px;
+    
+}
+.register-form label{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    
+
+}
+.register-form input{
+    padding: 2%;
+    width: 65%;
+    border-radius: 20px;
+
+}
+.register-form button{
+    padding: 3%;
+    width: 60%;
+    background-color: aqua;
+    border-radius: 20px;
+}
+.register-form button:hover{
+    background-color: green;
+}
