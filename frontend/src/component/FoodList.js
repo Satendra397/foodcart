@@ -35,7 +35,7 @@ const FoodList = () => {
 
   return (
     <div className="foodlist-container">
-      <div>
+      <div className="headline">
         <h2>FoodList</h2>
       </div>
       {status && (<div className={`message ${status}`}>
