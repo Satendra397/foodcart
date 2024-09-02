@@ -78,6 +78,54 @@ app.get("/foodlist",(req,res) =>{
   })
 })
 
+  // FoodDetails endpoint
+  app.get('/fooddetails/:id', (req, res) => {
+    const foodId = req.params.id;
+    const q = "SELECT * FROM fooditems WHERE id = ? ";
+  
+    connection.query(q,[foodId] ,(err, data) => {
+      if (err) return res.json({ err: err });
+      return res.json(data);
+    })
+     
+  
+    });
+
+    // Add item to cart endpoint
+  app.post("/cart", (req, res) => {
+    const { user_id, food_id } = req.body;
+    const q = "INSERT INTO cart (user_id, food_id) VALUES (?, ?)";
+    connection.query(q, [user_id, food_id], (err, data) => {
+      if (err) return res.json({ err: err });
+      return res.json({ message: "Item added to cart", data });
+    });
+
+    // Get cart items endpoint
+    app.get("/cart/:user_id", (req, res) => {
+      const user_id = req.params.user_id;
+      const q = `
+      SELECT fooditems.* FROM fooditems 
+      JOIN cart ON fooditems.id = cart.food_id 
+      WHERE cart.user_id = ?
+  `;
+      connection.query(q, [user_id], (err, data) => {
+        if (err) return res.json({ err: err });
+        return res.json(data);
+      });
+
+      // Remove item from cart endpoint
+      app.delete("/cart/:user_id/:food_id", (req, res) => {
+        const { user_id, food_id } = req.params;
+        const q = "DELETE FROM cart WHERE user_id = ? AND food_id = ?";
+        connection.query(q, [user_id, food_id], (err, data) => {
+          if (err) return res.json({ err: err });
+          return res.json({ message: "Item removed from cart" });
+        });
+      });
+    });
+  });
+
+
 
 
 app.listen(3001,() =>{
