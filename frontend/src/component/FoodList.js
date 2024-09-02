@@ -4,9 +4,6 @@ import axios from 'axios';
 import './FoodList.css';
 
 const FoodList = () => {
-  const [fooditems, setFooditems] = useState([]);
- const [status , setStatus]= useState('');
- const [message , setMessage] = useState('');
 
   useEffect( () =>{
    const fetchFoodItems = async() =>{
